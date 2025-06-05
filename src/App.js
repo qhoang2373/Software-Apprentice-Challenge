@@ -6,6 +6,20 @@ import React, { useState, useEffect } from 'react'; // importing react hooks
 
 function App() {
   const [ads, setAds] = useState([]); // will hold fetched data
+
+  const standardizeAd = (ad) => {
+  const standardized = {
+    campaign: ad.campaign_name || ad.campaign || ad.utm_campaign,
+    adset: ad.media_buy_name || ad.ad_group || ad.ad_squad_name || ad.utm_medium,
+    creative: ad.ad_name || ad.image_name || ad.creative_name || ad.utm_content,
+    spend: ad.spend || ad.cost || 0, // Default to 0 if not present
+    impressions: ad.impressions || 0,
+    clicks: ad.clicks || ad.post_clicks || 0,
+    results: ad.results || 0, // You'll need to allocate these from Google Analytics later
+    originalData: ad,
+  };
+  return standardized;
+};
   
 
 useEffect(() => { // tells react to fetch data
@@ -17,7 +31,8 @@ useEffect(() => { // tells react to fetch data
       return response.json();
     })
     .then(data => {
-      setAds(data); 
+      const standardizedAds = data.map(ad => standardizeAd(ad));
+      setAds(standardizedAds); 
       setLoading(false);
     })
     .catch(error => {

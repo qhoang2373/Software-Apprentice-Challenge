@@ -1,8 +1,8 @@
   import React from 'react';
 
-  const AdCard = ({ ad }) => { // Receives 'ad' object as prop
+  const AdCard = ({ ad }) => { 
     return (
-      <div className="ad-card"> {/* Apply CSS styling here */}
+      <div className="ad-card"> 
         <h3>Campaign: {ad.campaign}</h3>
         <p>Adset: {ad.adset}</p>
         <p>Creative: {ad.creative}</p>
@@ -14,4 +14,5 @@
     );
   };
 
-  export default AdCard;
+
+export default AdCard;

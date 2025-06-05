@@ -2,10 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, { useState, useEffect } from 'react'; // importing react hooks
+import AdCard from './components/AdCard';
 
 
 function App() {
   const [ads, setAds] = useState([]); // will hold fetched data
+    const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);  
 
   const standardizeAd = (ad) => {
   const standardized = {
@@ -48,6 +51,11 @@ return (
     {loading && <p>Loading ads...</p>}  {/* Conditional rendering, if left is true then, right will render  */}
     {error && <p>Error: {error.message}</p>}
     <ul>
+      <div className="ad-cards-container">
+        {ads.map((ad, index) => (
+          <AdCard key={index} ad={ad} />
+        ))}
+      </div>
       {ads.map((ad, index) => ( 
         <li key={index}>{ad.campaign_name || ad.utm_campaign || 'No Campaign Name'}</li> 
       ))}  {/* .map iterates over the ads array  */}

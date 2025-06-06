@@ -1,5 +1,17 @@
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6; 
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -14,65 +26,199 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #282c34; 
+  padding: 20px;
   color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-bottom: 20px; 
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5em; 
 }
 
 .App-link {
   color: #61dafb;
 }
 
+
 .ad-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px; /* This margin is effectively handled by gap in the container, but can be kept */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  background-color: #fff;
-  width: 300px; /* Example width for a card */
+  border: 1px solid #e0e0e0;
+  border-radius: 12px; 
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+  background-color: #ffffff;
+  width: 320px; 
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Spacing between elements inside the card */
+  gap: 8px; 
   flex-shrink: 0;
   flex-grow: 1;
-  max-width: calc(33% - 20px); /* For a 3-column layout (adjust 20px if your container gap changes) */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  text-align: left; /* Align text within the card to the left */
+  max-width: calc(33.33% - 40px); 
+  box-sizing: border-box; 
+  text-align: left; 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+}
+
+.ad-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15); 
 }
 
 .ad-card h3 {
-  margin-top: 0; /* Remove default top margin for h3 */
-  margin-bottom: 10px; /* Add some space below the campaign name */
+  margin-top: 0;
+  margin-bottom: 12px;
   color: #333;
+  font-size: 1.4em;
+  border-bottom: 1px solid #f0f0f0; 
+  padding-bottom: 10px;
 }
 
 .ad-card p {
-  margin: 0; /* Remove default paragraph margins */
-  line-height: 1.5;
+  margin: 0;
+  line-height: 1.6;
   color: #555;
+  font-size: 0.95em;
 }
 
 .ad-card strong {
-  color: #222; /* Make labels a bit darker */
+  color: #222;
+  font-weight: 600; 
 }
 
 
-/* --- Styles for the container holding all AdCards --- */
 .ad-cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centers cards horizontally */
+  justify-content: center;
   align-items: flex-start;
   padding: 20px;
-  gap: 20px; /* Space between the AdCards */
+  gap: 20px; 
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
+
+.controls-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  margin: 20px auto; 
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  gap: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.sort-controls, .search-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+}
+
+.controls-container h4 {
+  margin: 0 5px 0 0;
+  color: #444;
+  font-size: 1.1em;
+}
+
+.controls-container button {
+  padding: 10px 20px;
+  border-radius: 8px; 
+  border: none; 
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #e9e9e9; 
+  color: #333;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.controls-container button:hover {
+  background-color: #dcdcdc;
+  transform: translateY(-1px); 
+}
+
+.controls-container button:active {
+  transform: translateY(0); 
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); 
+}
+
+
+.controls-container button.active-sort {
+  background-color: #4CAF50; 
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.controls-container button.clear-sort {
+  background-color: #ffc107; 
+  color: #333;
+}
+
+.controls-container button.clear-sort:hover {
+  background-color: #e0a800;
+}
+
+
+
+.controls-container input[type="text"] {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 280px; 
+  max-width: 90%; 
+  box-sizing: border-box; 
+}
+
+.controls-container input[type="text"]:focus {
+  outline: none;
+  border-color: #4CAF50; 
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2); 
+}
+
+@media (max-width: 768px) {
+  .ad-card {
+    max-width: calc(50% - 20px); 
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-card {
+    max-width: calc(100% - 20px); 
+    margin: 10px auto; 
+  }
+
+  .App-header h1 {
+    font-size: 2em;
+  }
+
+  .controls-container {
+    padding: 15px;
+    margin: 15px;
+  }
+
+  .sort-controls, .search-controls {
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+
+  .controls-container button,
+  .controls-container input[type="text"] {
+    width: 100%; 
+    margin-bottom: 5px; 
+  }
+}
 
 @keyframes App-logo-spin {
   from {
